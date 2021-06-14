@@ -101,16 +101,12 @@ const Imiennicy = () => {
                   sm.push({ nazwisko: el.nazwisko, liczba: el.liczba_mezczyzn })
                 );
               var sw = [];
-              var xfa = state
+              state
                 .sort((a, b) => a.liczba_kobiet < b.liczba_kobiet)
-                .slice(0, 12);
-              for (var pppp = 0; pppp < xfa.length; pppp++) {
-                sw.push({
-                  nazwisko: xfa[pppp].nazwisko,
-                  liczba: xfa[pppp].liczba_kobiet,
+                .slice(0, 12)
+                .forEach((el) => {
+                  sw.push({ nazwisko: el.nazwisko, liczba: el.liczba_kobiet });
                 });
-              }
-
               console.log(sw);
               var sorted_ppl = [...sm, ...sw];
               console.log(sorted_ppl);
@@ -126,16 +122,13 @@ const Imiennicy = () => {
                     ) === i
                 )
               );
-              var vsorted_ppl = sorted_ppl
+              sorted_ppl
                 .sort((a, b) => a.liczba < b.liczba)
                 .slice(0, 12)
-                .sort((a, b) => a.nazwisko > b.nazwisko);
-              for (var ff = 0; ff < vsorted_ppl.length; ff++) {
-                tempRes.push(
-                  vsorted_ppl[ff].nazwisko + " " + vsorted_ppl[ff].liczba
-                );
-              }
-
+                .sort((a, b) => a.nazwisko > b.nazwisko)
+                .forEach((el) => {
+                  tempRes.push(el.nazwisko + " " + el.liczba);
+                });
               setResult(tempRes);
               console.log(result);
             }}
@@ -197,17 +190,17 @@ const Imiennicy = () => {
                   return true;
                 }
               });
-              for (var xx = 0; xx < sorted; xx++) {
+              sorted.forEach((el) => {
                 var liczba =
-                  Number.parseInt(sorted[xx].liczba_kobiet) +
-                  Number.parseInt(sorted[xx].liczba_mezczyzn);
+                  Number.parseInt(el.liczba_kobiet) +
+                  Number.parseInt(el.liczba_mezczyzn);
                 if (tempNumber + liczba <= twentyPercentOfPpl) {
                   tempNumber += liczba;
-                  peopleList.push(sorted[xx]);
+                  peopleList.push(el);
                 } else {
                   return;
                 }
-              }
+              });
 
               console.log(peopleList);
               var labels = [];
