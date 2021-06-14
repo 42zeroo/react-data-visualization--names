@@ -93,21 +93,20 @@ const Imiennicy = () => {
           </button>
           <button
             onClick={() => {
-              var temp = 0;
-              var tempar = [];
               var sm = [];
-              var sorted_man = state
                 .sort((a, b) => a.liczba_mezczyzn < b.liczba_mezczyzn)
                 .slice(0, 12)
                 .map((el) =>
                   sm.push({ nazwisko: el.nazwisko, liczba: el.liczba_mezczyzn })
                 );
               var sw = [];
-              var sorted_woman = state
                 .sort((a, b) => a.liczba_kobiet < b.liczba_kobiet)
                 .slice(0, 12)
                 .map((el) => {
-                  sw.push({ nazwisko: el.nazwisko, liczba: el.liczba_kobiet });
+                  return sw.push({
+                    nazwisko: el.nazwisko,
+                    liczba: el.liczba_kobiet,
+                  });
                 });
               console.log(sw);
               var sorted_ppl = [...sm, ...sw];
@@ -129,7 +128,7 @@ const Imiennicy = () => {
                 .slice(0, 12)
                 .sort((a, b) => a.nazwisko > b.nazwisko)
                 .map((el) => {
-                  tempRes.push(el.nazwisko + " " + el.liczba);
+                  return tempRes.push(el.nazwisko + " " + el.liczba);
                 });
               setResult(tempRes);
               console.log(result);
@@ -168,7 +167,6 @@ const Imiennicy = () => {
           </button>
           <button
             onClick={() => {
-              var temp = 0;
               var pplcounter = 0;
               state.map(
                 (el) =>
@@ -201,8 +199,9 @@ const Imiennicy = () => {
                   if (tempNumber + liczba <= twentyPercentOfPpl) {
                     tempNumber += liczba;
                     peopleList.push(el);
+                    return "";
                   } else {
-                    return;
+                    return "";
                   }
                 });
 
@@ -233,6 +232,7 @@ const Imiennicy = () => {
                   Number.parseInt(el.liczba_mezczyzn) +
                     Number.parseInt(el.liczba_kobiet)
                 );
+                return "";
               });
               var bgColors = [];
               var vColors = [];
@@ -263,6 +263,7 @@ const Imiennicy = () => {
                 vColors.push("rgba(255, 99, 132, 1)");
                 console.log(ColumnColor(e));
                 bgColors.push("rgba(255, 99, 132, 1)");
+                return "";
               });
               const data = {
                 labels: labels,
