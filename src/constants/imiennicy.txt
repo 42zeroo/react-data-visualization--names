@@ -11,10 +11,10 @@ Borowski	3566	3604
 Brzezinski	2317	2346
 Brzozowski	4146	4162
 Chmielewski	5177	5200
-Chojnacki	9259	9294
+Chojnacki	9357	9294
 Ciesielski	8214	8265
 Cieslak	9069	9094
-Czajkowski	8862	8952
+Czajkowski	8862	8951
 Czarnecki	3144	3203
 Czerwinski	9845	9921
 Dabrowski	2185	2266
