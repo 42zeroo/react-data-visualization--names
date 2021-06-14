@@ -93,8 +93,6 @@ const Imiennicy = () => {
           </button>
           <button
             onClick={() => {
-              var temp = 0;
-              var tempar = [];
               var sm = [];
               state
                 .sort((a, b) => a.liczba_mezczyzn < b.liczba_mezczyzn)
@@ -274,7 +272,7 @@ const Imiennicy = () => {
                 datasets: [
                   {
                     label:
-                      "Laczna liczba osob(20% calego kraju) z danym nazwiskiem",
+                      "Laczna liczba osob(z 20% calego kraju) z danym nazwiskiem",
                     data: series,
                     backgroundColor: bgColors,
                     borderColor: vColors,
