@@ -93,13 +93,17 @@ const Imiennicy = () => {
           </button>
           <button
             onClick={() => {
+              var temp = 0;
+              var tempar = [];
               var sm = [];
+              state
                 .sort((a, b) => a.liczba_mezczyzn < b.liczba_mezczyzn)
                 .slice(0, 12)
                 .map((el) =>
                   sm.push({ nazwisko: el.nazwisko, liczba: el.liczba_mezczyzn })
                 );
               var sw = [];
+              state
                 .sort((a, b) => a.liczba_kobiet < b.liczba_kobiet)
                 .slice(0, 12)
                 .map((el) => {
