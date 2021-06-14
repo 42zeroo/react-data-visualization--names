@@ -93,17 +93,15 @@ const Imiennicy = () => {
           </button>
           <button
             onClick={() => {
-              var temp = 0;
-              var tempar = [];
               var sm = [];
-              var sorted_man = state
+              state
                 .sort((a, b) => a.liczba_mezczyzn < b.liczba_mezczyzn)
                 .slice(0, 12)
                 .map((el) =>
                   sm.push({ nazwisko: el.nazwisko, liczba: el.liczba_mezczyzn })
                 );
               var sw = [];
-              var sorted_woman = state
+              state
                 .sort((a, b) => a.liczba_kobiet < b.liczba_kobiet)
                 .slice(0, 12)
                 .map((el) => {
@@ -168,7 +166,6 @@ const Imiennicy = () => {
           </button>
           <button
             onClick={() => {
-              var temp = 0;
               var pplcounter = 0;
               state.map(
                 (el) =>
@@ -259,9 +256,8 @@ const Imiennicy = () => {
                 //   color = "yellow";
                 console.log(color);
               };
-              series.map((e) => {
+              series.map(function (e) {
                 vColors.push("rgba(255, 99, 132, 1)");
-                console.log(ColumnColor(e));
                 bgColors.push("rgba(255, 99, 132, 1)");
               });
               const data = {
