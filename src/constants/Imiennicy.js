@@ -101,12 +101,16 @@ const Imiennicy = () => {
                   sm.push({ nazwisko: el.nazwisko, liczba: el.liczba_mezczyzn })
                 );
               var sw = [];
-              state
+              var xfa = state
                 .sort((a, b) => a.liczba_kobiet < b.liczba_kobiet)
-                .slice(0, 12)
-                .map((el) => {
-                  sw.push({ nazwisko: el.nazwisko, liczba: el.liczba_kobiet });
+                .slice(0, 12);
+              for (var pppp = 0; pppp < xfa.length; pppp++) {
+                sw.push({
+                  nazwisko: xfa[pppp].nazwisko,
+                  liczba: xfa[pppp].liczba_kobiet,
                 });
+              }
+
               console.log(sw);
               var sorted_ppl = [...sm, ...sw];
               console.log(sorted_ppl);
@@ -122,13 +126,16 @@ const Imiennicy = () => {
                     ) === i
                 )
               );
-              sorted_ppl
+              var vsorted_ppl = sorted_ppl
                 .sort((a, b) => a.liczba < b.liczba)
                 .slice(0, 12)
-                .sort((a, b) => a.nazwisko > b.nazwisko)
-                .map((el) => {
-                  tempRes.push(el.nazwisko + " " + el.liczba);
-                });
+                .sort((a, b) => a.nazwisko > b.nazwisko);
+              for (var ff = 0; ff < vsorted_ppl.length; ff++) {
+                tempRes.push(
+                  vsorted_ppl[ff].nazwisko + " " + vsorted_ppl[ff].liczba
+                );
+              }
+
               setResult(tempRes);
               console.log(result);
             }}
@@ -177,89 +184,68 @@ const Imiennicy = () => {
               console.log(pplcounter);
               var tempNumber = 0;
               var peopleList = [];
-              state
-                .sort((a, b) => {
-                  var liczbaA =
-                    Number.parseInt(a.liczba_kobiet) +
-                    Number.parseInt(a.liczba_mezczyzn);
-                  var liczbaB =
-                    Number.parseInt(b.liczba_kobiet) +
-                    Number.parseInt(b.liczba_mezczyzn);
-                  if (liczbaA > liczbaB) {
-                    return false;
-                  } else {
-                    return true;
-                  }
-                })
-                .map((el) => {
-                  var liczba =
-                    Number.parseInt(el.liczba_kobiet) +
-                    Number.parseInt(el.liczba_mezczyzn);
-                  if (tempNumber + liczba <= twentyPercentOfPpl) {
-                    tempNumber += liczba;
-                    peopleList.push(el);
-                  } else {
-                    return;
-                  }
-                });
+              var sorted = state.sort((a, b) => {
+                var liczbaA =
+                  Number.parseInt(a.liczba_kobiet) +
+                  Number.parseInt(a.liczba_mezczyzn);
+                var liczbaB =
+                  Number.parseInt(b.liczba_kobiet) +
+                  Number.parseInt(b.liczba_mezczyzn);
+                if (liczbaA > liczbaB) {
+                  return false;
+                } else {
+                  return true;
+                }
+              });
+              for (var xx = 0; xx < sorted; xx++) {
+                var liczba =
+                  Number.parseInt(sorted[xx].liczba_kobiet) +
+                  Number.parseInt(sorted[xx].liczba_mezczyzn);
+                if (tempNumber + liczba <= twentyPercentOfPpl) {
+                  tempNumber += liczba;
+                  peopleList.push(sorted[xx]);
+                } else {
+                  return;
+                }
+              }
 
               console.log(peopleList);
               var labels = [];
               var series = [];
               var min,
                 max = 0;
-              peopleList.map((el) => {
+              for (var jj = 0; jj < peopleList.length; jj++) {
                 if (
-                  Number.parseInt(el.liczba_mezczyzn) +
-                    Number.parseInt(el.liczba_kobiet) >
+                  Number.parseInt(peopleList[jj].liczba_mezczyzn) +
+                    Number.parseInt(peopleList[jj].liczba_kobiet) >
                   max
                 )
                   max =
-                    Number.parseInt(el.liczba_mezczyzn) +
-                    Number.parseInt(el.liczba_kobiet);
+                    Number.parseInt(peopleList[jj].liczba_mezczyzn) +
+                    Number.parseInt(peopleList[jj].liczba_kobiet);
                 if (
                   min >=
-                  Number.parseInt(el.liczba_mezczyzn) +
-                    Number.parseInt(el.liczba_kobiet)
+                  Number.parseInt(peopleList[jj].liczba_mezczyzn) +
+                    Number.parseInt(peopleList[jj].liczba_kobiet)
                 )
                   min =
-                    Number.parseInt(el.liczba_mezczyzn) +
-                    Number.parseInt(el.liczba_kobiet);
-                labels.push(el.nazwisko);
+                    Number.parseInt(peopleList[jj].liczba_mezczyzn) +
+                    Number.parseInt(peopleList[jj].liczba_kobiet);
+                labels.push(peopleList[jj].nazwisko);
                 series.push(
-                  Number.parseInt(el.liczba_mezczyzn) +
-                    Number.parseInt(el.liczba_kobiet)
+                  Number.parseInt(peopleList[jj].liczba_mezczyzn) +
+                    Number.parseInt(peopleList[jj].liczba_kobiet)
                 );
-              });
+              }
+
               var bgColors = [];
               var vColors = [];
-              const ColumnColor = (pplcount) => {
-                // alert(pplcounter);
 
-                var color = "";
-                console.log(pplcounter);
-                console.log(pplcount + ", " + pplcounter * 0.05);
-                // if (pplcount > twentyPercentOfPpl) color = "red";
-                console.log(0.1 * pplcounter);
-                if (
-                  pplcount > 0.1 * pplcounter &&
-                  pplcount <= twentyPercentOfPpl
-                ) {
-                  console.log("true");
-                } else {
-                  console.log("false");
-                }
-                color = "green";
-                // if (pplcount > 0.1 * pplcounter && pplcount < 0.15 * pplcounter)
-                //   color = "blue";
-                // if (pplcount > 0.5 * pplcounter && pplcount < 0.1 * pplcounter)
-                //   color = "yellow";
-                console.log(color);
-              };
-              series.map(function (e) {
+              for (var mm = 0; mm < series.length; mm++) {
                 vColors.push("rgba(255, 99, 132, 1)");
                 bgColors.push("rgba(255, 99, 132, 1)");
-              });
+              }
+
               const data = {
                 labels: labels,
                 datasets: [
